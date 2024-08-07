@@ -1,0 +1,38 @@
+import numpy as np
+
+X=np.array(([2,9],[1,5],[3,6]),dtype=float)
+Y=np.array(([89],[86],[92]),dtype=float)
+X=X/np.amax(X,axis=0)
+Y=Y/100
+
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+
+def dervatives_sigmoid(x):
+    return x*(1-x)
+
+epoch=7000
+lr=0.1
+inputlayer_nurons=2
+hiddenlayer_nurons=3
+outputlayer_nurons=1
+
+wh=np.random.uniform(size=(inputlayer_nurons,hiddenlayer_nurons))
+bh=np.random.uniform(size=(1,hiddenlayer_nurons))
+wout=np.random.uniform(size=(hiddenlayer_nurons,outputlayer_nurons))
+bout=np.random.uniform(size=(1,outputlayer_nurons))
+
+for i in range(epoch):
+    hinput1=np.dot(X, wh)
+    hinput=hinput1+bh
+    hinn=sigmoid(hinput) 
+    
+    ooutput1=np.dot(hinn, wout)
+    ooutput=ooutput1+bout
+    output=sigmoid(ooutput)
+        
+    
+print("input:\n"+str(X))
+print("actual output:\n"+str(Y))
+print("predicted output:\n",output)    
+    
