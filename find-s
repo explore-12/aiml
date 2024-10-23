@@ -1,24 +1,28 @@
+# NEW
 import csv
+csvfile=open("1csvfinds.csv","r")
+reader=csv.reader(csvfile)
+
 num_attributes=6
 a=[]
-print("\n the given training data set \n")
-csvfile=open('finds.csv','r')
-reader=csv.reader(csvfile)
-for row in reader:
-    a.append(row)
-    print(row)
-print("the initial values of hypothesis ")
-hypothesis=['0']*num_attributes
-print(hypothesis)
+
+for i in reader:
+    a.append(i)
+    print(i)
+
+hypo=["0"]*num_attributes
+print("the inital hypo=")
+print(hypo)
+
+for j in range(num_attributes):
+    hypo[j]=a[0][j]
     
-for j in range(0,num_attributes):
-    hypothesis[j]=a[0][j]
-for i in range(0,len(a)):
-    if(a[i][num_attributes]=='yes'):
-        for j in range(0,num_attributes):
-            if(a[i][j]!=hypothesis[j]):
-                hypothesis[j]='?'
-            else:
-                hypothesis[j]=a[i][j]
-    print("for training instance no ",i," the hypothesis is ",hypothesis)
-print("the maximally specific hypothesis is ",hypothesis)
+print(hypo)
+
+for i in range(len(a)):
+    if(a[i][num_attributes]=="yes"):
+        for j in range(num_attributes):
+            if(a[i][j]!=hypo[j]):
+                hypo[j]="?"
+    print("the hypo=",hypo)
+print("the MAXhypo=",hypo)
